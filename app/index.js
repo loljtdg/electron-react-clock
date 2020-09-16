@@ -13,6 +13,20 @@ let mainWindow
 
 Menu.setApplicationMenu(null)
 
+const gotTheLock = app.requestSingleInstanceLock()
+if (!gotTheLock) {
+  app.quit()
+} else {
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // 当运行第二个实例时,将会聚焦到mainWindow这个窗口
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore()
+      mainWindow.focus()
+      mainWindow.show()
+    }
+  })
+}
+
 // 当 Electron 完成初始化并准备创建浏览器窗口时调用此方法
 app.on('ready', createMainWindow)
 
@@ -88,7 +102,7 @@ function createMainWindow() {
 
     // 加载应用-----  打包的加载入口
     mainWindow.loadFile('build/index.html', {
-        hash: 'main/10'
+        hash: 'main'
     })
 
     // 加载应用----适用于 react 项目

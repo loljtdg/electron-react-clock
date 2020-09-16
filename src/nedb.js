@@ -1,4 +1,4 @@
-const Datastore  =  window.require('nedb')
+const Datastore  =  require('nedb')
 const { remote } = window.require('electron');
 const path = window.require('path')
 

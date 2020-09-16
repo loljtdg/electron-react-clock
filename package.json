@@ -23,8 +23,8 @@
     "dev": "react-scripts build & electron . --debug",
     "devE": "electron . --debug",
     "buildreact": "react-scripts build",
-    "build": "react-scripts build & electron-packager . electronreactapp --out electronreactapp --arch=x64 --overwrite --ignore=node_modules --extra-resource=assets",
-    "package": "electron-packager . electronreactapp --out electronreactapp --arch=x64 --overwrite --ignore=node_modules --extra-resource=assets"
+    "build": "react-scripts build & electron-packager . electronreactapp --out electronreactapp --arch=x64 --overwrite --ignore=\"(node_modules|src|public)\" --extra-resource=assets",
+    "package": "electron-packager . electronreactapp --out electronreactapp --arch=x64 --overwrite --ignore=\"(node_modules|src|public)\" --extra-resource=assets"
   },
   "eslintConfig": {
     "extends": "react-app"
