@@ -10,6 +10,7 @@
 
 # production
 /build
+/electronreactapp
 
 # misc
 .DS_Store

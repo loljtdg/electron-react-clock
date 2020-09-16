@@ -1,0 +1,44 @@
+.toast {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.toast .logo {
+  width: 40vw;
+  height: 40vw;
+}
+
+.toast .content {
+  margin-top: 10px;
+  color: #333333;
+  font-size: 16px;
+}
+
+.toast .button-box {
+  margin-top: 10px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.toast .button {
+  margin-top: 10px;
+  flex: 1;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 15px;
+  line-height: 30px;
+  text-align: center;
+  color: #333333;
+  background-color: #cccccc;
+  border: 1px solid #cccccc;
+  border-radius: 15px;
+  cursor: pointer;
+}

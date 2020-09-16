@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter, Route } from "react-router-dom";
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+import Main from './pages/main';
+import Toast from './pages/toast';
+
+const router = (
+  <HashRouter>
+    <Route path="/main" exact component={Main} />
+    <Route path="/main/:timeout" exact component={Main} />
+    <Route path="/toast" component={Toast} />
+  </HashRouter>
+)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {router}
   </React.StrictMode>,
   document.getElementById('root')
 );
