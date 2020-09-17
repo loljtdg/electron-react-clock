@@ -20,11 +20,12 @@
     "url": "^0.11.0"
   },
   "scripts": {
-    "dev": "react-scripts build & electron . --debug",
+    "dev":  "npm run devR | npm run devE",
+    "devR": "react-scripts start",
     "devE": "electron . --debug",
-    "buildreact": "react-scripts build",
-    "build": "react-scripts build & electron-packager . electron-react-clock --out electronreactapp --arch=x64 --overwrite --ignore=\"(node_modules|src|public)\" --extra-resource=assets",
-    "package": "electron-packager . electron-react-clock --out electronreactapp --arch=x64 --overwrite --ignore=\"(node_modules|src|public)\" --extra-resource=assets"
+    "build": "npm run buildR && npm run buildE",
+    "buildR": "react-scripts build",
+    "buildE": "electron-packager . electron-react-clock --out electronreactapp --arch=x64 --overwrite --ignore=\"(node_modules|src|public)\" --extra-resource=assets"
   },
   "eslintConfig": {
     "extends": "react-app"

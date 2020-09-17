@@ -11,20 +11,21 @@ const iconPath = path.join(__dirname, '../assets/timg.jpg');
 // 保持window对象的全局引用,避免JavaScript对象被垃圾回收时,窗口被自动关闭.
 let mainWindow
 
-Menu.setApplicationMenu(null)
+// 设置隐藏窗口菜单
+!debug && Menu.setApplicationMenu(null)
 
 const gotTheLock = app.requestSingleInstanceLock()
 if (!gotTheLock) {
-  app.quit()
+    app.quit()
 } else {
-  app.on('second-instance', (event, commandLine, workingDirectory) => {
-    // 当运行第二个实例时,将会聚焦到mainWindow这个窗口
-    if (mainWindow) {
-      if (mainWindow.isMinimized()) mainWindow.restore()
-      mainWindow.focus()
-      mainWindow.show()
-    }
-  })
+    app.on('second-instance', (event, commandLine, workingDirectory) => {
+        // 当运行第二个实例时,将会聚焦到mainWindow这个窗口
+        if (mainWindow) {
+            if (mainWindow.isMinimized()) mainWindow.restore()
+            mainWindow.focus()
+            mainWindow.show()
+        }
+    })
 }
 
 // 当 Electron 完成初始化并准备创建浏览器窗口时调用此方法
@@ -101,12 +102,14 @@ function createMainWindow() {
 
 
     // 加载应用-----  打包的加载入口
-    mainWindow.loadFile('build/index.html', {
-        hash: 'main'
-    })
+    if (debug) {
+        mainWindow.loadURL('http://localhost:3000/#/main');
+    } else {
+        mainWindow.loadFile('build/index.html', {
+            hash: 'main'
+        })
+    }
 
-    // 加载应用----适用于 react 项目
-    // mainWindow.loadURL('http://localhost:3000/');
 
     // 打开开发者工具，默认不打开
     debug && mainWindow.webContents.openDevTools();
@@ -139,12 +142,13 @@ function createToastWindow() {
 
 
     // 加载应用-----  打包的加载入口
-    toastWindow.loadFile('build/index.html', {
-        hash: 'toast'
-    })
-
-    // 加载应用----适用于 react 项目
-    // toastWindow.loadURL('http://localhost:3000/');
+    if (debug) {
+        toastWindow.loadURL('http://localhost:3000/#/toast');
+    } else {
+        toastWindow.loadFile('build/index.html', {
+            hash: 'toast'
+        })
+    }
 
     // 打开开发者工具，默认不打开
     debug && toastWindow.webContents.openDevTools();
